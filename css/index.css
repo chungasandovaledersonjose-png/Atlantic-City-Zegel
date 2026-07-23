@@ -1,0 +1,250 @@
+
+:root, [data-bs-theme="dark"] {
+    --bg-main: #1a1a1a;
+    --bg-card: #262626;
+    --border-color: #333333;
+    --text-muted: #aaaaaa;
+    --text-active: #ffffff;
+    --sidebar-border: 1px solid #333333;
+}
+
+
+[data-bs-theme="light"] {
+    --bg-main: #f8f9fa;
+    --bg-card: #ffffff;
+    --border-color: #dee2e6;
+    --text-muted: #555555;
+    --text-active: #000000;
+    --sidebar-border: 1px dashed #cccccc;
+}
+
+
+body {
+    background-color: var(--bg-main);
+    font-family: system-ui, -apple-system, sans-serif;
+    color: var(--text-active);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.sidebar {
+    width: 240px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 20px;
+    border-right: var(--sidebar-border);
+    background-color: var(--bg-main);
+    transition: background-color 0.3s ease, border-right 0.3s ease, width 0.3s ease;
+}
+
+/* Empuja el bloque del usuario al fondo solo en escritorio */
+.sidebar .w-100.h-100 {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar-header {
+    width: 100%;
+}
+
+.sidebar-logo-space {
+    height: 60px;
+    width: 100%;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.sidebar-logo {
+    max-height: 45px;
+    width: auto;
+    object-fit: contain;
+}
+
+.sidebar-user-space {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.user-avatar {
+    border: 1px solid var(--border-color);
+    background-color: var(--text-muted);
+    opacity: 0.3;
+}
+
+.user-placeholder-line {
+    background-color: var(--text-muted);
+    opacity: 0.2;
+}
+
+.main-content {
+    margin-left: 240px;
+    padding: 30px;
+    min-height: 100vh;
+    background-color: var(--bg-main);
+    transition: background-color 0.3s ease, margin-left 0.3s ease;
+}
+
+.nav-link-custom {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.nav-link-custom i {
+    font-size: 1.1rem;
+    margin-right: 12px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-link-custom:hover, .nav-link-custom.active {
+    border-color: var(--text-active);
+    background-color: var(--bg-card);
+    color: var(--text-active);
+    font-weight: bold;
+}
+
+
+@media (min-width: 768px) {
+    .sidebar-user-wrapper {
+        margin-top: auto !important;
+    }
+}
+
+/* Tablets y pantallas medianas (De 768px a 991px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .sidebar {
+        width: 75px;
+        padding: 20px 10px;
+    }
+    .hidden-text-tablet span {
+        display: none;
+    }
+    .nav-link-custom {
+        justify-content: center;
+        padding: 12px 0;
+    }
+    .nav-link-custom i {
+        margin-right: 0;
+        font-size: 1.25rem;
+    }
+    .sidebar-logo-space {
+        height: 45px;
+    }
+    .sidebar-logo {
+        max-height: 30px;
+    }
+    /* Oculta el texto del placeholder del usuario en modo tablet */
+    .mobile-user-block .user-placeholder-line {
+        display: none;
+    }
+    .mobile-user-block .user-avatar {
+        margin-right: 0 !important;
+    }
+    .mobile-user-block {
+        padding: 10px !important;
+        justify-content: center;
+    }
+    .main-content {
+        margin-left: 75px;
+    }
+}
+
+/* Dispositivos móviles (Menos de 768px) */
+@media (max-width: 767.98px) {
+    .sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+        padding: 0 20px;
+        border-right: none;
+        background-color: var(--bg-main);
+    }
+
+    #sidebarNavigation {
+        padding-top: 10px;
+        padding-bottom: 15px;
+    }
+
+    .nav-link-custom {
+        margin-bottom: 6px;
+        padding: 12px 15px;
+    }
+
+    /* Muestra la información completa del usuario en vertical al desplegarse */
+    .mobile-user-block {
+        display: flex !important;
+        justify-content: start !important;
+        padding: 15px !important;
+    }
+    
+    .mobile-user-block .user-placeholder-line {
+        display: block !important;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 20px;
+        min-height: calc(100vh - 70px);
+    }
+
+    .mobile-menu-btn {
+        padding: 6px 12px;
+        font-size: 1.25rem;
+        border-color: var(--border-color);
+        color: var(--text-muted);
+    }
+}
+
+/* =====================================================================
+   FORMULARIOS DE REGISTRO (modales)
+   Usa las mismas variables de tema para que los modales se adapten
+   automáticamente al modo claro / oscuro.
+   ===================================================================== */
+.modal-content {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-active);
+}
+
+.modal-header,
+.modal-footer {
+    border-color: var(--border-color);
+}
+
+.modal .form-label {
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.modal .form-control,
+.modal .form-select {
+    background-color: var(--bg-main);
+    border-color: var(--border-color);
+    color: var(--text-active);
+}
+
+.modal .form-control:focus,
+.modal .form-select:focus {
+    background-color: var(--bg-main);
+    border-color: var(--text-active);
+    color: var(--text-active);
+    box-shadow: 0 0 0 3px rgba(128, 128, 128, 0.15);
+}
+
+.modal .form-control::placeholder {
+    color: var(--text-muted);
+    opacity: 0.6;
+}

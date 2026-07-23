@@ -1,0 +1,65 @@
+
+body {
+    
+    background-image: url('../imagenes/fondo2-login.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.overlay-intro {
+    background: rgba(15, 23, 42, 0.55);
+    width: 100%;
+    height: 100vh;
+}
+
+
+.intro-logo-box {
+    width: 100%;
+    max-width: 400px; 
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    
+    
+    animation: aparecerSuave 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+
+.intro-logo-box img {
+    width: 100%;
+    max-width: 300px; 
+    height: auto;
+    object-fit: contain;
+}
+
+
+.text-primary {
+    color: #2563eb !important;
+}
+
+
+@keyframes aparecerSuave {
+    0% {
+        transform: scale(0.95);
+        opacity: 0;
+        filter: blur(4px);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+
+@media (max-width: 480px) {
+    .intro-logo-box {
+        margin: 20px; 
+    }
+}

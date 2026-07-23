@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesiones - Atlantic City</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="../css/index.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Barra superior para móviles -->
+    <div class="d-md-none p-3 d-flex justify-content-between align-items-center bg-dark border-bottom">
+        <img src="../imagenes/logo.png" alt="Logo" class="img-fluid" style="height: 30px;">
+        <button class="btn btn-outline-secondary mobile-menu-btn" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarNavigation" aria-controls="sidebarNavigation" aria-expanded="false" aria-label="Abrir menú de navegación">
+            <i class="bi bi-list"></i>
+        </button>
+    </div>
+
+    <!-- Barra lateral (Sidebar) -->
+    <div class="sidebar d-flex flex-column justify-content-between">
+        <div class="w-100 h-100 d-flex flex-column">
+            <div class="sidebar-header mb-4 d-none d-md-flex align-items-center justify-content-start">
+                <div class="sidebar-logo-space rounded d-flex align-items-center justify-content-start px-2">
+                    <img src="../imagenes/logo.png" alt="Logo Atlantic City" class="img-fluid sidebar-logo">
+                </div>
+            </div>
+
+            <div class="collapse d-md-flex flex-md-column justify-content-between h-100" id="sidebarNavigation">
+                <nav class="nav flex-column hidden-text-tablet" aria-label="Navegación principal">
+                    <a class="nav-link-custom" href="dashboard.html">
+                        <i class="bi bi-speedometer2" aria-hidden="true"></i> <span>Dashboard</span>
+                    </a>
+                    <a class="nav-link-custom" href="clientes.html">
+                        <i class="bi bi-people" aria-hidden="true"></i> <span>Clientes</span>
+                    </a>
+                    <a class="nav-link-custom" href="membresia.html">
+                        <i class="bi bi-card-checklist" aria-hidden="true"></i> <span>Membresías</span>
+                    </a>
+                    <a class="nav-link-custom active" href="sesiones.html">
+                        <i class="bi bi-controller" aria-hidden="true"></i> <span>Sesiones de Juego</span>
+                    </a>
+                    <a class="nav-link-custom" href="promociones.html">
+                        <i class="bi bi-tags" aria-hidden="true"></i> <span>Promociones</span>
+                    </a>
+                    <a class="nav-link-custom" href="quejas.html">
+                        <i class="bi bi-exclamation-octagon" aria-hidden="true"></i> <span>Quejas</span>
+                    </a>
+                    <a class="nav-link-custom" href="usuarios.html">
+                        <i class="bi bi-person-gear" aria-hidden="true"></i> <span>Usuarios</span>
+                    </a>
+                </nav>
+
+                <div class="sidebar-user-wrapper w-100 mt-3">
+                    <div class="sidebar-user-space p-3 rounded d-flex align-items-center mobile-user-block">
+                        <div class="rounded-circle user-avatar" style="width: 35px; height: 35px; flex-shrink: 0; margin-right: 10px;"></div>
+                        <div class="w-100 user-placeholder-line rounded" style="height: 20px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenido Principal -->
+    <main class="main-content">
+        <div class="d-flex justify-content-end mb-4">
+            <button id="themeToggler" class="btn btn-outline-secondary d-flex align-items-center gap-2" aria-live="polite">
+                <i id="themeIcon" class="bi bi-sun-fill" aria-hidden="true"></i>
+                <span id="themeText">Modo Claro</span>
+            </button>
+        </div>
+
+        <!-- CONTENIDO ESPECÍFICO DE SESIONES -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Monitoreo de Sesiones en Vivo</h2>
+            <!-- Botón que abre el formulario de registro de juego / sesión -->
+            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalSesion">
+                <i class="bi bi-controller me-2"></i>Registrar Juego
+            </button>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover align-middle border-secondary" id="tablaSesiones">
+                <thead>
+                    <tr>
+                        <th>Mesa/Terminal</th>
+                        <th>Juego</th>
+                        <th>Cliente</th>
+                        <th>Hora de Inicio</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Mesa 04</td>
+                        <td>Blackjack VIP</td>
+                        <td>Carlos Mendoza</td>
+                        <td>17:30</td>
+                        <td><span class="badge bg-danger animate-pulse">En Juego</span></td>
+                    </tr>
+                    <tr>
+                        <td>Terminal #128</td>
+                        <td>Tragamonedas Zeus</td>
+                        <td>Ana Gómez</td>
+                        <td>18:05</td>
+                        <td><span class="badge bg-danger">En Juego</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <!-- ============================================================= -->
+    <!-- MODAL: FORMULARIO DE REGISTRO DE JUEGOS / SESIONES            -->
+    <!-- Basado en el wireframe 4 · Sesiones de juego (Cliente, Juego, -->
+    <!-- Apostado, Ganado, Puntos, Fecha)                              -->
+    <!-- ============================================================= -->
+    <div class="modal fade" id="modalSesion" tabindex="-1" aria-labelledby="modalSesionLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalSesionLabel">
+                        <i class="bi bi-controller me-2"></i>Registro de Juego
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <form id="formSesion" novalidate>
+                    <div class="modal-body">
+                        <div class="row g-3">
+                            <div class="col-12 col-md-6">
+                                <label for="sesionMesa" class="form-label">Mesa / Terminal</label>
+                                <input type="text" class="form-control" id="sesionMesa" placeholder="Ej: Mesa 07 o Terminal #45" required>
+                                <div class="invalid-feedback">Indica la mesa o terminal.</div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="sesionJuego" class="form-label">Juego</label>
+                                <select class="form-select" id="sesionJuego" required>
+                                    <option value="" selected disabled>Selecciona un juego...</option>
+                                    <option>Blackjack VIP</option>
+                                    <option>Ruleta Americana</option>
+                                    <option>Póker Texas Hold'em</option>
+                                    <option>Tragamonedas Zeus</option>
+                                    <option>Baccarat</option>
+                                </select>
+                                <div class="invalid-feedback">Selecciona el juego.</div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="sesionCliente" class="form-label">Cliente</label>
+                                <input type="text" class="form-control" id="sesionCliente" placeholder="Nombre del cliente" required>
+                                <div class="invalid-feedback">Ingresa el nombre del cliente.</div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="sesionHora" class="form-label">Hora de inicio</label>
+                                <input type="time" class="form-control" id="sesionHora" required>
+                                <div class="invalid-feedback">Indica la hora de inicio.</div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="sesionApostado" class="form-label">Monto apostado ($)</label>
+                                <input type="number" class="form-control" id="sesionApostado" min="0" step="0.01" placeholder="Ej: 150.00" required>
+                                <div class="invalid-feedback">Ingresa un monto válido (mayor o igual a 0).</div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label for="sesionEstado" class="form-label">Estado</label>
+                                <select class="form-select" id="sesionEstado" required>
+                                    <option selected>En Juego</option>
+                                    <option>Finalizada</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success"><i class="bi bi-check-circle me-2"></i>Guardar Registro</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/index.js" defer></script>
+    <script src="../js/formularios.js" defer></script>
+</body>
+</html>
